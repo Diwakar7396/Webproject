@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css"> <!-- Optional: Link to your CSS file -->
+    <script>
+        // JavaScript for form validation
+        function validateForm() {
+            var username = document.getElementById('username').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            // Check if all fields are filled out
+            if (username === "" || email === "" || password === "") {
+                alert("Please fill in all fields.");
+                return false; // Prevent form submission
+            }
+
+            // Check if the email format is valid using a regular expression
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return false; // Prevent form submission
+            }
+
+            // Password validation (example: at least 6 characters)
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false; // Prevent form submission
+            }
+
+            // If everything is valid, submit the form
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Booking Slot for Parking</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="booking.html">Book a Slot</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="form-container">
+        <h2>Register Here</h2>
+
+        <!-- The form posts to register_process.php -->
+        <form id="registerForm" action="register.php" method="POST" onsubmit="return validateForm()">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit" class="btn">Register</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Booking Slot for Parking Website</p>
+    </footer>
+</body>
+</html>
